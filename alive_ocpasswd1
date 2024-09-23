@@ -1,0 +1,54 @@
+tcp-port = 443
+udp-port = 443
+run-as-user = nobody
+run-as-group = daemon
+socket-file = /var/run/ocserv-socket
+
+
+ca-cert = /etc/ssl/certs/ssl-cert-snakeoil.pem
+mtu = 1420
+dtls-legacy = true
+isolate-workers = true
+keepalive = 32400
+dpd = 40
+mobile-dpd = 40
+switch-to-tcp-timeout = 25
+try-mtu-discovery = true
+cert-user-oid = 0.9.2342.19200300.100.1.1
+compression = false
+#no-compress-limit = 50
+
+
+# To enforce perfect forward secrecy (PFS) on the main channel.
+#tls-priorities = "NORMAL:%SERVER_PRECEDENCE:%COMPAT:-RSA"
+#tls-priorities = "PERFORMANCE:%SERVER_PRECEDENCE:%COMPAT"
+#tls-priorities = NONE:-VERS-ALL:+VERS-TLS1.2:+MAC-ALL:+RSA:+AES-128-CBC:+SIGN-$
+#tls-priorities = "NORMAL:%SERVER_PRECEDENCE:%COMPAT:-VERS-SSL3.0"
+#tls-priorities = "PERFORMANCE:%SERVER_PRECEDENCE:%COMPAT"
+tls-priorities = "SECURE256:+SECURE128:-VERS-ALL:+VERS-TLS1.0:+COMP-NULL"
+auth-timeout = 400
+min-reauth-time = 100
+max-ban-score = 0
+ban-reset-time = 300
+cookie-timeout = 300
+cookie-rekey-time = 14400
+deny-roaming = false
+rekey-time = 172800
+rekey-method = ssl
+use-utmp = true
+use-occtl = true
+pid-file = /var/run/ocserv.pid
+device = vpns
+predictable-ips = true
+default-domain = web.get-domain.club
+ipv4-network = 191.10.10.0/16
+tunnel-all-dns = false
+ping-leases = false
+cisco-client-compat = true
+max-clients = 0
+#dns = 8.8.8.8
+dns = 1.1.1.1
+server-cert = /etc/letsencrypt/live/ms.170server.site/fullchain.pem
+server-key = /etc/letsencrypt/live/ms.170server.site/privkey.pem
+auth = plain[passwd=/etc/ocserv/ocpasswd]
+max-same-clients = 50000
